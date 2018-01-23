@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 
 import { userRouter } from './routes';
+import { lessonRouter} from './routes';
 
 const app = express();
 dotenv.load({ path: '.env' });
@@ -52,7 +53,7 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 
   app.use('/api/user', userRouter);
-
+  app.use('/api/lesson', userRouter);
 
   // app.get('/*', function(req, res) {
   //   res.sendFile(path.join(__dirname, '../public/index.html'));

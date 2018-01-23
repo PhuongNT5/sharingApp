@@ -18,14 +18,14 @@ class EmailService implements IEmailService {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'ancungserver@gmail.com',
-                    pass: 'ananancungcungcung'
+                    user: 'abc@gmail.com',
+                    pass: 'abc123'
                 }
             });
 
             const mailOptions = {
                 to: toEmails,
-                subject: 'Reset password Phui',
+                subject: 'Reset password Sharing App',
                 text: content
             };
 

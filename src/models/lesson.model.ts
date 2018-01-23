@@ -4,6 +4,7 @@ import constant from '../constant';
 export interface ILesson {
     title: String,
     name: String,
+    content: String,
     createBy: String,
     date: Date,
     place: String
@@ -23,6 +24,10 @@ const lessonSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    content: {
+        type: String,
+        required:true
+    },
     place: {
         type: String,
         required: true
@@ -37,7 +42,8 @@ const lessonSchema = new mongoose.Schema({
     },
     toJSON: {
         virtuals: true
-    }});
+    }
+});
 
 lessonSchema.virtual('id').get(function () {
     return this._id.toHexString();

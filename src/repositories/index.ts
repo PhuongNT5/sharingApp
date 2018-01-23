@@ -1,10 +1,13 @@
 export * from '../repositories/user.repository';
-import { IUserRepository} from '../IRepositories'
-import { UserRepository} from '../repositories'
+export * from '../repositories/lesson.repository';
+import { IUserRepository, ILessonRepository} from '../IRepositories'
+import { UserRepository, LessonRepository} from '../repositories';
+
 
 class DBContext {
     private static instance: DBContext;
     private user: IUserRepository;
+    private lesson : ILessonRepository;
     constructor() {
         this.user = new UserRepository();
     }
@@ -17,6 +20,9 @@ class DBContext {
     }
     public getUser() {
         return this.user;
+    }
+    public getLesson () {
+        return this.lesson;
     }
 }
 export const DBContextSingleton = DBContext.getInstance();

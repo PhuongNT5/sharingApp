@@ -34,11 +34,11 @@ There is no reason to fret if you have forgotten your Sharing App password. It h
 
 Click the link below to take you to the create a new password page.
 
-https://www.phui.com/resetpassword/${response[0].id.toString()}
+https://www.sharing.com/resetpassword/${response[0].id.toString()}
 
 If you have not made any password reset request, it is likely another user entered your email address by mistake and you can simply disregard this email.
 
-For further help or clarifications, please contact support@phui.com.
+For further help or clarifications, please contact support@sharing.com.
 
 Thank you
 
