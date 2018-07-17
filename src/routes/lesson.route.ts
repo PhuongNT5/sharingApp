@@ -17,3 +17,7 @@ const findById = (req, res, next) => {
     LessonController.findById(req).then(response => res.send(response))
     .catch(err => res.status(400).send(err));
 };
+
+lessonRouter.route('/').get(getLessons);
+lessonRouter.route('/').post(createLesson);
+lessonRouter.route('/:id').get(findById);

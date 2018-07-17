@@ -27,7 +27,6 @@ class UserService implements IUserService {
     public resetPassword(email: string): Promise<any> {
         return this.userRepository.find({ email: email })
             .then((response) => {
-                console.log(email);
                 const content = `Hello ${response[0].name.toString()}!
                 
 There is no reason to fret if you have forgotten your Sharing App password. It happens to the best of us! Here is a simple one click solution for password reset.
@@ -116,7 +115,7 @@ Phuong`;
             return Promise.resolve(result);
         }).catch(err => Promise.reject(err));
     }
-    findUsers(): Promise<IUser[] | IError> {
+    findUsers(): Promise<any> {
         return this.userRepository.find({})
             .then(users => Promise.resolve(users))
             .catch(err => Promise.reject(err));
@@ -128,6 +127,14 @@ Phuong`;
                 statusCode: 400,
                 message: 'user not exist'
             }));
+    }
+    getUser() : Promise<IUser[] | IError> {
+        return this.userRepository.find({})
+        .then(user => Promise.resolve(user))
+        .catch(err => Promise.reject({
+            statusCode: 400,
+            message: "error"
+        }))
     }
 }
 export const UserServiceInstance = UserService.getInstance();

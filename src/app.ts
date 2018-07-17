@@ -6,13 +6,17 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 
 import { userRouter } from './routes';
-import { lessonRouter} from './routes';
+import { lessonRouter } from './routes';
+import { noteRouter } from './routes';
 
-const app = express();
+// const app = express();
 dotenv.load({ path: '.env' });
-app.set('port', (process.env.PORT || 3000));
+// app.set('port', (process.env.PORT || 3000));
 
-
+ 
+let app = require('express')();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
 
 // app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
@@ -42,7 +46,7 @@ app.use(morgan('dev'));
 // if (process.env.NODE_ENV === 'test') {
 //   mongoose.connect(process.env.MONGODB_TEST_URI);
 // } else {
-  mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 // }
 
 const db = mongoose.connection;
@@ -53,18 +57,38 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 
   app.use('/api/user', userRouter);
-  app.use('/api/lesson', userRouter);
+  app.use('/api/lesson', lessonRouter);
+  app.use('/api/note', noteRouter);
 
   // app.get('/*', function(req, res) {
   //   res.sendFile(path.join(__dirname, '../public/index.html'));
   // });
 
-  if (!module.parent) {
-    app.listen(app.get('port'), () => {
-      console.log('Sharing app service listening on port ' + app.get('port'));
+  
+  io.on('connection', (socket) => {
+
+    socket.on('disconnect', function () {
+      io.emit('users-changed', { user: socket.nickname, event: 'left' });
     });
-  }
+
+    socket.on('set-nickname', (nickname) => {
+      socket.nickname = nickname;
+      io.emit('users-changed', { user: nickname, event: 'joined' });
+    });
+
+    socket.on('add-message', (message) => {
+      io.emit('message', { text: message.text, from: socket.nickname, created: new Date() });
+    });
+  });
+
+  var port = process.env.PORT || 3000;
+ 
+  http.listen(port, function(){
+     console.log('listening in http://localhost:' + port);
+  });
 
 });
+
+
 
 export { app };

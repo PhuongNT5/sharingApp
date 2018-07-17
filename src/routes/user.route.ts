@@ -44,7 +44,11 @@ const findUserById = (req, res, next) => {
         .then(response => res.send(response))
         .catch(err => res.status(400).send(err));
 };
-
+const getUser = (eq, res, next) => {
+    UserController.find()
+    .then(res => res.send(res))
+    .catch(err => res.status(400).send(err))
+}
 userRouter.route('/').put(parser([constant.ROLE.USER, constant.ROLE.ADMIN]), updateUser);
 
 userRouter.route('/resetpassword/:email').get(resetPassword);
@@ -59,7 +63,7 @@ userRouter.route('/changepassword').put(parser([constant.ROLE.USER, constant.ROL
 userRouter.route('/:email').delete(parser([constant.ROLE.ADMIN]), deleteUser);
 
 
-userRouter.route('/').get(parser([constant.ROLE.USER, constant.ROLE.ADMIN]), find);
+userRouter.route('/').get(find);
 
 
 userRouter.route('/:id').get(parser([constant.ROLE.USER, constant.ROLE.ADMIN]), findUserById);

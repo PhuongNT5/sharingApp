@@ -16,15 +16,15 @@ class LessonService implements ILessonService {
         }
         return LessonService.instance;
     }
-    getLessons(): Promise <ILesson[] | IError>{
+    public getLessons(): Promise <ILesson[] | IError>{
         return this.lessonRepository.findAll()
             .then((response) => Promise.resolve(response))
             .catch((err) => Promise.reject(err));
     }
     public createLesson (lesson: ILesson): Promise<ILesson>{
-                return this.lessonRepository.insert(lesson)
-                .then(lesson => Promise.resolve(lesson))
-                .catch(err => Promise.reject(err))
+         return this.lessonRepository.insert(lesson)
+            .then(lesson => Promise.resolve(lesson))
+            .catch(err => Promise.reject(err))
     }
     public findById( lessonId: string) : Promise<ILesson> {
         return this.lessonRepository.findById(lessonId)

@@ -53,6 +53,7 @@ const findUserById = (req) => {
     return userService.findUserById(id).then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
+
 export const UserController = {
     register: register,
     resetPassword: resetPassword,

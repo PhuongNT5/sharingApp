@@ -35,7 +35,8 @@ export class UserRepository implements IUserRepository {
                     email : newUser.email,
                     password: newUser.password,
                     role: newUser.role,
-                    salt: newUser.salt
+                    salt: newUser.salt,
+                    avatar: newUser.avatar
                 });
 
                 return newUser1.save().then(newUserr => {
@@ -55,7 +56,8 @@ export class UserRepository implements IUserRepository {
                 user.email = newUser.email,
                 user.password = newUser.password,
                 user.role = newUser.role,
-                user.salt = newUser.salt
+                user.salt = newUser.salt,
+                user.avatar = newUser.avatar
                 return user.save().then(userUpdate => {
                     return Promise.resolve(userUpdate.toObject() as IUser);
                 })

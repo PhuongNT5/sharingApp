@@ -21,31 +21,26 @@ const lessonSchema = new mongoose.Schema({
         type: String,
     },
     createBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     content: {
         type: String,
-        required:true
     },
     place: {
         type: String,
-        required: true
     },
     date: {
         type: Date,
         require: true
-    }
-},
-    {toObject:{
-        virtuals:true
     },
-    toJSON: {
-        virtuals: true
+    poster: {
+        type: String
+    },
+    idResource: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"resource"
     }
 });
 
-lessonSchema.virtual('id').get(function () {
-    return this._id.toHexString();
-});
-export const LessonModel = mongoose.model<ILessonModel>('Lesson', lessonSchema);
+export const LessonModel = mongoose.model<ILessonModel>('lesson', lessonSchema);

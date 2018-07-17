@@ -8,6 +8,7 @@ export interface IUser {
     role? : String;
     salt?: String;
     password: String;
+    avatar: String;
 
 }
 export interface IUserModel extends IUser, mongoose.Document {}
@@ -30,6 +31,9 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: constant.ROLE.USER,
+    },
+    avatar: {
+        type: String
     }
 
 },

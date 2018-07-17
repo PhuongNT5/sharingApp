@@ -12,11 +12,11 @@ export interface IResourceModel extends IResource, mongoose.Document{}
 const resourceSchema = new mongoose.Schema({
     nameOfLesson: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lesson'
+        ref: 'lesson'
     },
     shareBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lesson',
+        ref: 'lesson',
     },
     name: {
         type: String,
@@ -26,15 +26,8 @@ const resourceSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-},{
-    toObject:{
-        virtuals:true
-    },
-    toJSON: {
-        virtuals: true
-        }
 });
 resourceSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
-export const ResourceModel = mongoose.model<IResourceModel>('Lesson', resourceSchema);
+export const ResourceModel = mongoose.model<IResourceModel>('resource', resourceSchema);
