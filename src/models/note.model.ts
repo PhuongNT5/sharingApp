@@ -4,9 +4,10 @@ import constant from '../constant';
 export interface INote {
     title: String,
     location: String,
-    startTime: Date,
-    startDate: Date,
-    endDate: Date,
+    startTime: String,
+    startDate: String,
+    endDate: String,
+    endTime: String,
     repeat: String
 }
 export interface INoteModel extends INote, mongoose.Document {}
@@ -20,13 +21,16 @@ const noteSchema = new mongoose.Schema({
         type: String,
     },
     startTime: {
-        type: Date
+        type: String
     },
     startDate : {
-        type: Date
+        type: String
     },
     endDate: {
-        type: Date
+        type: String
+    },
+    endTime:{
+        type: String
     },
     repeat: {
         type: String

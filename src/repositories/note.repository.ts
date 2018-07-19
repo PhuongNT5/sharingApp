@@ -36,12 +36,12 @@ export class NoteRepository implements INoteRepository {
         })
     }
     
-    delete (note : INote): Promise <RemoveObject>{
-        return NoteModel.findOne({title: note.title}).then(note => {
+    delete (noteId :string): Promise <RemoveObject>{
+        return NoteModel.findOne({_id: noteId}).then(note => {
             if (!note){
                 return Promise.reject('Note does not exist');
             }else{
-                return NoteModel.remove({title:note.title}).then((result:any)=>{
+                return NoteModel.remove({_id: note}).then((result:any)=>{
                     return Promise.resolve(result as RemoveObject);
                 }).catch(err => {
                     return Promise.resolve(err);
@@ -51,7 +51,7 @@ export class NoteRepository implements INoteRepository {
     }
 
     update (newNote: INote) :Promise<INote>{
-        return NoteModel.findOne({title: newNote.title}).then((note: INoteModel) => {
+        return NoteModel.findOne({startDate: newNote.startDate}).then((note: INoteModel) => {
             if (note) {
 
                 return note.save().then( noteUpdate => {
@@ -67,33 +67,36 @@ export class NoteRepository implements INoteRepository {
         })
     }
 
-    insert (newNote: INote) : Promise<INote> {
-        return NoteModel.findOne({
-            title: newNote.title,
-            location: newNote.location,
-            startTime: newNote.startTime,
-            startDate: newNote.startDate,
-            endDate: newNote.endDate,
-            repeat: newNote.repeat
-        }).then(note =>{
-            if (note) {
-                return Promise.reject('note already exist');
-            }else{
-                const note = new NoteModel({
-                   title: newNote.title,
-                   location: newNote.location,
-                   startTime: newNote.startTime,
-                   startDate: newNote.startDate,
-                   endDate: newNote.endDate,
-                   repeat: newNote.repeat
-                })
-                return note.save().then( newNote =>{
-                    return Promise.resolve(newNote.toObject() as INote)
-                })
-            }
-        }).catch(err => {
-            return Promise.reject(err );
-        })
-    }
+    insert ( createNote : INote) :Promise <INote> {
+        // return NoteModel.findOne({
+        //     title: createNote.title,
+        //     location: createNote.location,
+        //     startTime: createNote.startTime,
+        //     startDate: createNote.startDate,
+        //     endDate: createNote.endDate,
+        //     endTime: createNote.endTime,
+        //     repeat: createNote.repeat
+        //  }).then(note =>{
+        //      if ( note) {
+        //          return Promise.reject('note already exist');
+        //      }else{
+                 const note = new NoteModel({
+                    title: createNote.title,
+                    location: createNote.location,
+                    startTime: createNote.startTime,
+                    startDate: createNote.startDate,
+                    endDate: createNote.endDate,
+                    endTime: createNote.endTime,
+                    repeat: createNote.repeat
+                 })
+                 return note.save().then( newNote =>{
+                     return Promise.resolve(newNote.toObject() as INote)
+            //      })
+            //  }
+         }).catch(err => {
+             return Promise.reject(err );
+         })
+    };
+
 
 } 

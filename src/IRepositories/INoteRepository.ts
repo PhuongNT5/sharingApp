@@ -3,14 +3,14 @@ import { INote, IError, INoteModel, RemoveObject} from '../models';
 export interface INoteRepository {
     findAll(): Promise <INote[] | IError>;
     
-    findOne(lesson:INote): Promise <INote>;
+    findOne(note:INote): Promise <INote>;
 
-    findById (lessonId: string): Promise <INote>;
+    findById (noteId: string): Promise <INote>;
 
-    insert(lesson: INote): Promise<INote>;
+    insert(note: INote): Promise<INote>;
 
-    update(lesson: INote, teamId: string): Promise <INote>;
+    update(note: INote, teamId: string): Promise <INote>;
 
-    delete(lesson: INote) : Promise<RemoveObject>;
+    delete(note: string) : Promise<RemoveObject>;
 
 }

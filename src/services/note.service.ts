@@ -22,7 +22,7 @@ class NoteService implements INoteService  {
         .then((notes) => Promise.resolve(notes))
         .catch((err) => Promise.reject(err))
     }
-    createNote(newNote) : Promise <INote> {
+    createNote(newNote:INote) : Promise <INote> {
         return this.noteRepository.insert(newNote)
         .then((note) => Promise.resolve(note))
         .catch((err)=> Promise.reject(err))
@@ -31,6 +31,11 @@ class NoteService implements INoteService  {
         return this.noteRepository.findById(noteId)
         .then( (note) => Promise.resolve(note))
         .catch((err) => Promise.reject(err));
+    }
+    deleteNote(noteId: string):  Promise<RemoveObject | string>  {
+        return this.noteRepository.delete(noteId)
+        .then((note) => Promise.resolve(note))
+        .catch((err) => Promise.reject(err))
     }
 }
 
