@@ -2,10 +2,10 @@ import * as mongoose from 'mongoose';
 import constant from '../constant';
 
 export interface IUser {
-    Id? : string;
+    Id?: string;
     username: String;
     email: String;
-    role? : String;
+    role?: String;
     salt?: String;
     password: String;
     avatar: String;
@@ -38,8 +38,8 @@ const userSchema = new mongoose.Schema({
 
 },
 {
-    toObject:{
-        virtuals:true
+    toObject: {
+        virtuals: true
     },
     toJSON: {
         virtuals: true

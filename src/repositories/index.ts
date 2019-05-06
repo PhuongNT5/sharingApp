@@ -1,14 +1,14 @@
 export * from '../repositories/user.repository';
 export * from '../repositories/lesson.repository';
 export * from '../repositories/note.repository';
-import { IUserRepository, ILessonRepository, INoteRepository} from '../IRepositories'
+import { IUserRepository, ILessonRepository, INoteRepository} from '../IRepositories';
 import { UserRepository, LessonRepository, NoteRepository} from '../repositories';
 
 class DBContext {
     private static instance: DBContext;
     private user: IUserRepository;
-    private lesson : ILessonRepository;
-    private note: INoteRepository
+    private lesson: ILessonRepository;
+    private note: INoteRepository;
     constructor() {
         this.user = new UserRepository();
         this.lesson = new LessonRepository();

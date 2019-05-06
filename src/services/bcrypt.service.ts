@@ -1,5 +1,6 @@
 import { IBcryptService } from '../IServices/IBcryptService';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
+// const bcrypt = require('bcrypt');
 import { SaltAndPass } from '../models';
 import constant from '../constant';
 

@@ -128,13 +128,13 @@ Phuong`;
                 message: 'user not exist'
             }));
     }
-    getUser() : Promise<IUser[] | IError> {
+    getUser(): Promise<IUser[] | IError> {
         return this.userRepository.find({})
         .then(user => Promise.resolve(user))
         .catch(err => Promise.reject({
             statusCode: 400,
-            message: "error"
-        }))
+            message: 'error'
+        }));
     }
 }
 export const UserServiceInstance = UserService.getInstance();
