@@ -13,10 +13,9 @@ import { noteRouter } from './routes';
 dotenv.load({ path: '.env' });
 // app.set('port', (process.env.PORT || 3000));
 
- 
-let app = require('express')();
-let http = require('http').Server(app);
-let io = require('socket.io')(http);
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 // app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
@@ -64,7 +63,6 @@ db.once('open', () => {
   //   res.sendFile(path.join(__dirname, '../public/index.html'));
   // });
 
-  
   io.on('connection', (socket) => {
 
     socket.on('disconnect', function () {
@@ -81,8 +79,7 @@ db.once('open', () => {
     });
   });
 
-  var port = process.env.PORT || 3000;
- 
+  const port = process.env.PORT || 3000;
   http.listen(port, function(){
      console.log('listening in http://localhost:' + port);
   });
