@@ -6,7 +6,7 @@ import { INoteService } from '../IServices/INoteService';
 
 class NoteService implements INoteService  {
     private static instance: NoteService;
-    private noteRepository : INoteRepository;
+    private noteRepository: INoteRepository;
     private constructor() {
         this.noteRepository = DBContextSingleton.getNote();
     }
@@ -20,14 +20,14 @@ class NoteService implements INoteService  {
     getNotes(): Promise <INote[] | IError> {
         return this.noteRepository.findAll()
         .then((notes) => Promise.resolve(notes))
-        .catch((err) => Promise.reject(err))
+        .catch((err) => Promise.reject(err));
     }
-    createNote(newNote:INote) : Promise <INote> {
+    createNote(newNote: INote): Promise <INote> {
         return this.noteRepository.insert(newNote)
         .then((note) => Promise.resolve(note))
-        .catch((err)=> Promise.reject(err))
+        .catch((err) => Promise.reject(err));
     }
-    findById( noteId: string) : Promise<INote> {
+    findById( noteId: string): Promise<INote> {
         return this.noteRepository.findById(noteId)
         .then( (note) => Promise.resolve(note))
         .catch((err) => Promise.reject(err));
@@ -35,7 +35,7 @@ class NoteService implements INoteService  {
     deleteNote(noteId: string):  Promise<RemoveObject | string>  {
         return this.noteRepository.delete(noteId)
         .then((note) => Promise.resolve(note))
-        .catch((err) => Promise.reject(err))
+        .catch((err) => Promise.reject(err));
     }
 }
 
