@@ -2,10 +2,10 @@ import * as mongoose from 'mongoose';
 import constant from '../constant';
 
 export interface IResource {
-    nameOfLesson: String,
-    shareBy: String,
-    name: String,
-    resource: String
+    nameOfLesson: String;
+    shareBy: String;
+    name: String;
+    resource: String;
 }
 export interface IResourceModel extends IResource, mongoose.Document{}
 

@@ -1,5 +1,5 @@
 import { INoteRepository } from '../IRepositories';
-import { INote, INoteModel,NoteModel, IError, RemoveObject} from '../models';
+import { INote, INoteModel, NoteModel, IError, RemoveObject} from '../models';
 
 
 export class NoteRepository implements INoteRepository {
@@ -88,7 +88,7 @@ export class NoteRepository implements INoteRepository {
                     endTime: createNote.endTime,
                     repeat: createNote.repeat
                  });
-                 return note.save().then( newNote =>{
+                 return note.save().then( newNote => {
                      return Promise.resolve(newNote.toObject() as INote)
             //      })
             //  }

@@ -2,18 +2,18 @@ import * as mongoose from 'mongoose';
 import constant from '../constant';
 
 export interface ILesson {
-    title: String,
-    name: String,
-    content: String,
-    createBy: String,
-    date: Date,
-    place: String
+    title: String;
+    name: String;
+    content: String;
+    createBy: String;
+    date: Date;
+    place: String;
 }
 
 export interface ILessonModel  extends ILesson, mongoose.Document {}
 
 const lessonSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
@@ -21,8 +21,8 @@ const lessonSchema = new mongoose.Schema({
         type: String,
     },
     createBy: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     content: {
         type: String,
@@ -39,7 +39,7 @@ const lessonSchema = new mongoose.Schema({
     },
     idResource: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"resource"
+        ref: 'resource'
     }
 });
 
