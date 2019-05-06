@@ -57,7 +57,7 @@ export class UserRepository implements IUserRepository {
                 user.password = newUser.password,
                 user.role = newUser.role,
                 user.salt = newUser.salt,
-                user.avatar = newUser.avatar
+                user.avatar = newUser.avatar;
                 return user.save().then(userUpdate => {
                     return Promise.resolve(userUpdate.toObject() as IUser);
                 })
