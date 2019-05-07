@@ -3,3 +3,4 @@ export * from '../services/user.service';
 export * from '../services/email.service';
 export  * from '../services/lesson.service';
 export * from '../services/note.service';
+export * from '../services/resource.service';

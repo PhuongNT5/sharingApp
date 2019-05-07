@@ -6,8 +6,8 @@ const lessonService = LessonServiceInstance;
 
 const getLessons = () => {
     return lessonService.getLessons().then(res => Promise.resolve(res)
-            .catch(err => Promise.reject(err))
-)}
+            .catch(err => Promise.reject(err)));
+};
 
 const createLesson = (req) => {
     const newLesson: ILesson = req.body;

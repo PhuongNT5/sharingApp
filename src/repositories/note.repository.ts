@@ -17,7 +17,7 @@ export class NoteRepository implements INoteRepository {
         return NoteModel.findOne(note).then(note => {
             if (note) {
                 return Promise.resolve(note.toObject() as INote);
-            }else{
+            }else {
                 return Promise.reject('Note does not exist');
             }
         }).catch( err => {

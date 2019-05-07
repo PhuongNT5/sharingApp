@@ -7,7 +7,7 @@ export interface IResource {
     name: String;
     resource: String;
 }
-export interface IResourceModel extends IResource, mongoose.Document{}
+export interface IResourceModel extends IResource, mongoose.Document {}
 
 const resourceSchema = new mongoose.Schema({
     nameOfLesson: {

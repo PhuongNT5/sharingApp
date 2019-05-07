@@ -42,7 +42,7 @@ const deleteUser = (req) => {
     const email = req.params.email;
     return userService.delete(email)
         .then(result => Promise.resolve(result))
-        .catch(err => Promise.reject(err)); //Promise.reject(err))
+        .catch(err => Promise.reject(err));
 };
 const findUsers = () => {
     return userService.findUsers().then(response => Promise.resolve(response))
